@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.myboot.cmms.mapper.system.menu.SysMenuMapper" >
+  <resultMap id="FullMenuResultMap" type="com.myboot.cmms.model.system.menu.FullMenu" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+    <result column="path" property="path" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="component" property="component" jdbcType="VARCHAR" />
+    <result column="icon_cls" property="iconCls" jdbcType="VARCHAR" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="keep_alive" property="keepAlive" jdbcType="BIT" />
+    <result column="require_auth" property="requireAuth" jdbcType="BIT" />
+    <result column="parent_id" property="parentId" jdbcType="INTEGER" />
+    <result column="folder" property="folder" jdbcType="BIT" />
+    <result column="create_user" property="createUser" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="VARCHAR" />
+    <result column="update_user" property="updateUser" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="BaseResultMap" type="com.myboot.cmms.model.system.menu.SysMenu" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+    <result column="path" property="path" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="component" property="component" jdbcType="VARCHAR" />
+    <result column="parent_id" property="parentId" jdbcType="INTEGER" />
+    <result column="folder" property="folder" jdbcType="BIT" />
+    <result column="create_user" property="createUser" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="VARCHAR" />
+    <result column="update_user" property="updateUser" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="VARCHAR" />
+    <association property="meta" javaType="com.myboot.cmms.model.system.menu.Meta">
+      <result column="icon_cls" property="iconCls" jdbcType="VARCHAR" />
+      <result column="title" property="title" jdbcType="VARCHAR" />
+      <result column="keep_alive" property="keepAlive" jdbcType="BIT" />
+      <result column="require_auth" property="requireAuth" jdbcType="BIT" />
+    </association>
+  </resultMap>
+  <resultMap id="MenuWithChildren" type="com.myboot.cmms.model.system.menu.SysMenu" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+    <result column="path" property="path" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="component" property="component" jdbcType="VARCHAR" />
+    <result column="parent_id" property="parentId" jdbcType="INTEGER" />
+    <result column="folder" property="folder" jdbcType="BIT" />
+    <result column="create_user" property="createUser" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="VARCHAR" />
+    <result column="update_user" property="updateUser" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="VARCHAR" />
+    <association property="meta" javaType="com.myboot.cmms.model.system.menu.Meta">
+      <result column="icon_cls" property="iconCls" jdbcType="VARCHAR" />
+      <result column="title" property="title" jdbcType="VARCHAR" />
+      <result column="keep_alive" property="keepAlive" jdbcType="BIT" />
+      <result column="require_auth" property="requireAuth" jdbcType="BIT" />
+    </association>
+    <collection property="children" ofType="com.myboot.cmms.model.system.menu.SysMenu"
+                select="com.myboot.cmms.mapper.system.menu.SysMenuMapper.selectMenusTreeByParentId" column="id"/>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, url, path, name, component, icon_cls, title, keep_alive, require_auth, parent_id,
+    folder, create_user, create_time, update_user, update_time
+  </sql>
+  <select id="selectMenusTreeByParentId" resultMap="MenuWithChildren" parameterType="java.lang.Integer">
+    select * from sys_menu where parent_id = #{pid,jdbcType=INTEGER}
+    </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from sys_menu
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sys_menu
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.myboot.cmms.model.system.menu.SysMenu" >
+    insert into sys_menu (id, url, path,
+      name, component, icon_cls,
+      title, keep_alive, require_auth,
+      parent_id, folder, create_user,
+      create_time, update_user, update_time
+      )
+    values (#{id,jdbcType=INTEGER}, #{url,jdbcType=VARCHAR}, #{path,jdbcType=VARCHAR},
+      #{name,jdbcType=VARCHAR}, #{component,jdbcType=VARCHAR}, #{iconCls,jdbcType=VARCHAR},
+      #{title,jdbcType=VARCHAR}, #{keepAlive,jdbcType=BIT}, #{requireAuth,jdbcType=BIT},
+      #{parentId,jdbcType=INTEGER}, #{folder,jdbcType=BIT}, #{createUser,jdbcType=VARCHAR},
+      #{createTime,jdbcType=VARCHAR}, #{updateUser,jdbcType=VARCHAR}, #{updateTime,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.myboot.cmms.model.system.menu.FullMenu" >
+    insert into sys_menu
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="url != null" >
+        url,
+      </if>
+      <if test="path != null" >
+        path,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="component != null" >
+        component,
+      </if>
+      <if test="iconCls != null" >
+        icon_cls,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="keepAlive != null" >
+        keep_alive,
+      </if>
+      <if test="requireAuth != null" >
+        require_auth,
+      </if>
+      <if test="parentId != null" >
+        parent_id,
+      </if>
+      <if test="folder != null" >
+        folder,
+      </if>
+      <if test="createUser != null" >
+        create_user,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateUser != null" >
+        update_user,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="path != null" >
+        #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="component != null" >
+        #{component,jdbcType=VARCHAR},
+      </if>
+      <if test="iconCls != null" >
+        #{iconCls,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="keepAlive != null" >
+        #{keepAlive,jdbcType=BIT},
+      </if>
+      <if test="requireAuth != null" >
+        #{requireAuth,jdbcType=BIT},
+      </if>
+      <if test="parentId != null" >
+        #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="folder != null" >
+        #{folder,jdbcType=BIT},
+      </if>
+      <if test="createUser != null" >
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUser != null" >
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.myboot.cmms.model.system.menu.SysMenu" >
+    update sys_menu
+    <set >
+      <if test="url != null" >
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="path != null" >
+        path = #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="component != null" >
+        component = #{component,jdbcType=VARCHAR},
+      </if>
+      <if test="iconCls != null" >
+        icon_cls = #{iconCls,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="keepAlive != null" >
+        keep_alive = #{keepAlive,jdbcType=BIT},
+      </if>
+      <if test="requireAuth != null" >
+        require_auth = #{requireAuth,jdbcType=BIT},
+      </if>
+      <if test="parentId != null" >
+        parent_id = #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="folder != null" >
+        folder = #{folder,jdbcType=BIT},
+      </if>
+      <if test="createUser != null" >
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUser != null" >
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.myboot.cmms.model.system.menu.SysMenu" >
+    update sys_menu
+    set url = #{url,jdbcType=VARCHAR},
+      path = #{path,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      component = #{component,jdbcType=VARCHAR},
+      icon_cls = #{iconCls,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      keep_alive = #{keepAlive,jdbcType=BIT},
+      require_auth = #{requireAuth,jdbcType=BIT},
+      parent_id = #{parentId,jdbcType=INTEGER},
+      folder = #{folder,jdbcType=BIT},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=VARCHAR},
+      update_user = #{updateUser,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectMenuInfoByMid" resultMap="FullMenuResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from sys_menu
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <update id="updateByIdSelective" parameterType="com.myboot.cmms.model.system.menu.FullMenu" >
+    update sys_menu
+    <set >
+      <if test="url != null" >
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="path != null" >
+        path = #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="component != null" >
+        component = #{component,jdbcType=VARCHAR},
+      </if>
+      <if test="iconCls != null" >
+        icon_cls = #{iconCls,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="keepAlive != null" >
+        keep_alive = #{keepAlive,jdbcType=BIT},
+      </if>
+      <if test="requireAuth != null" >
+        require_auth = #{requireAuth,jdbcType=BIT},
+      </if>
+      <if test="parentId != null" >
+        parent_id = #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="folder != null" >
+        folder = #{folder,jdbcType=BIT},
+      </if>
+      <if test="createUser != null" >
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUser != null" >
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

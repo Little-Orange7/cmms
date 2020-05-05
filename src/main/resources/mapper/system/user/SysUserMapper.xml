@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.myboot.cmms.mapper.system.user.SysUserMapper" >
+  <resultMap id="BaseResultMap" type="com.myboot.cmms.model.system.user.SysUser" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="login_name" property="loginName" jdbcType="VARCHAR" />
+    <result column="login_pwd" property="loginPwd" jdbcType="VARCHAR" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="user_face" property="userFace" jdbcType="VARCHAR" />
+    <result column="user_gender" property="userGender" jdbcType="VARCHAR" />
+    <result column="mobile_phone" property="mobilePhone" jdbcType="VARCHAR" />
+    <result column="user_mail" property="userMail" jdbcType="VARCHAR" />
+    <result column="user_remark" property="userRemark" jdbcType="VARCHAR" />
+    <result column="user_status" property="userStatus" jdbcType="VARCHAR" />
+    <result column="cert_no" property="certNo" jdbcType="VARCHAR" />
+    <result column="org_code" property="orgCode" jdbcType="VARCHAR" />
+    <result column="user_address" property="userAddress" jdbcType="VARCHAR" />
+    <result column="user_position" property="userPosition" jdbcType="VARCHAR" />
+    <result column="first_login_time" property="firstLoginTime" jdbcType="VARCHAR" />
+    <result column="last_login_time" property="lastLoginTime" jdbcType="VARCHAR" />
+    <result column="last_logout_time" property="lastLogoutTime" jdbcType="VARCHAR" />
+    <result column="create_user" property="createUser" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="VARCHAR" />
+    <result column="update_user" property="updateUser" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, login_name, login_pwd, user_name, user_face, user_gender, mobile_phone, user_mail,
+    user_remark, user_status, cert_no, org_code, user_address, user_position, first_login_time,
+    last_login_time, last_logout_time, create_user, create_time, update_user, update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from sys_user
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sys_user
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.myboot.cmms.model.system.user.SysUser" >
+    insert into sys_user (id, login_name, login_pwd,
+      user_name, user_face, user_gender,
+      mobile_phone, user_mail, user_remark,
+      user_status, cert_no, org_code,
+      user_address, user_position, first_login_time,
+      last_login_time, last_logout_time, create_user,
+      create_time, update_user, update_time
+      )
+    values (#{id,jdbcType=INTEGER}, #{loginName,jdbcType=VARCHAR}, #{loginPwd,jdbcType=VARCHAR},
+      #{userName,jdbcType=VARCHAR}, #{userFace,jdbcType=VARCHAR}, #{userGender,jdbcType=VARCHAR},
+      #{mobilePhone,jdbcType=VARCHAR}, #{userMail,jdbcType=VARCHAR}, #{userRemark,jdbcType=VARCHAR},
+      #{userStatus,jdbcType=VARCHAR}, #{certNo,jdbcType=VARCHAR}, #{orgCode,jdbcType=VARCHAR},
+      #{userAddress,jdbcType=VARCHAR}, #{userPosition,jdbcType=VARCHAR}, #{firstLoginTime,jdbcType=VARCHAR},
+      #{lastLoginTime,jdbcType=VARCHAR}, #{lastLogoutTime,jdbcType=VARCHAR}, #{createUser,jdbcType=VARCHAR},
+      #{createTime,jdbcType=VARCHAR}, #{updateUser,jdbcType=VARCHAR}, #{updateTime,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.myboot.cmms.model.system.user.SysUser" >
+    insert into sys_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="loginName != null" >
+        login_name,
+      </if>
+      <if test="loginPwd != null" >
+        login_pwd,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="userFace != null" >
+        user_face,
+      </if>
+      <if test="userGender != null" >
+        user_gender,
+      </if>
+      <if test="mobilePhone != null" >
+        mobile_phone,
+      </if>
+      <if test="userMail != null" >
+        user_mail,
+      </if>
+      <if test="userRemark != null" >
+        user_remark,
+      </if>
+      <if test="userStatus != null" >
+        user_status,
+      </if>
+      <if test="certNo != null" >
+        cert_no,
+      </if>
+      <if test="orgCode != null" >
+        org_code,
+      </if>
+      <if test="userAddress != null" >
+        user_address,
+      </if>
+      <if test="userPosition != null" >
+        user_position,
+      </if>
+      <if test="firstLoginTime != null" >
+        first_login_time,
+      </if>
+      <if test="lastLoginTime != null" >
+        last_login_time,
+      </if>
+      <if test="lastLogoutTime != null" >
+        last_logout_time,
+      </if>
+      <if test="createUser != null" >
+        create_user,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateUser != null" >
+        update_user,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="loginName != null" >
+        #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="loginPwd != null" >
+        #{loginPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userFace != null" >
+        #{userFace,jdbcType=VARCHAR},
+      </if>
+      <if test="userGender != null" >
+        #{userGender,jdbcType=VARCHAR},
+      </if>
+      <if test="mobilePhone != null" >
+        #{mobilePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="userMail != null" >
+        #{userMail,jdbcType=VARCHAR},
+      </if>
+      <if test="userRemark != null" >
+        #{userRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="userStatus != null" >
+        #{userStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="certNo != null" >
+        #{certNo,jdbcType=VARCHAR},
+      </if>
+      <if test="orgCode != null" >
+        #{orgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="userAddress != null" >
+        #{userAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="userPosition != null" >
+        #{userPosition,jdbcType=VARCHAR},
+      </if>
+      <if test="firstLoginTime != null" >
+        #{firstLoginTime,jdbcType=VARCHAR},
+      </if>
+      <if test="lastLoginTime != null" >
+        #{lastLoginTime,jdbcType=VARCHAR},
+      </if>
+      <if test="lastLogoutTime != null" >
+        #{lastLogoutTime,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null" >
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUser != null" >
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.myboot.cmms.model.system.user.SysUser" >
+    update sys_user
+    <set >
+      <if test="loginName != null" >
+        login_name = #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="loginPwd != null" >
+        login_pwd = #{loginPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userFace != null" >
+        user_face = #{userFace,jdbcType=VARCHAR},
+      </if>
+      <if test="userGender != null" >
+        user_gender = #{userGender,jdbcType=VARCHAR},
+      </if>
+      <if test="mobilePhone != null" >
+        mobile_phone = #{mobilePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="userMail != null" >
+        user_mail = #{userMail,jdbcType=VARCHAR},
+      </if>
+      <if test="userRemark != null" >
+        user_remark = #{userRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="userStatus != null" >
+        user_status = #{userStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="certNo != null" >
+        cert_no = #{certNo,jdbcType=VARCHAR},
+      </if>
+      <if test="orgCode != null" >
+        org_code = #{orgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="userAddress != null" >
+        user_address = #{userAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="userPosition != null" >
+        user_position = #{userPosition,jdbcType=VARCHAR},
+      </if>
+      <if test="firstLoginTime != null" >
+        first_login_time = #{firstLoginTime,jdbcType=VARCHAR},
+      </if>
+      <if test="lastLoginTime != null" >
+        last_login_time = #{lastLoginTime,jdbcType=VARCHAR},
+      </if>
+      <if test="lastLogoutTime != null" >
+        last_logout_time = #{lastLogoutTime,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null" >
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUser != null" >
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.myboot.cmms.model.system.user.SysUser" >
+    update sys_user
+    set login_name = #{loginName,jdbcType=VARCHAR},
+      login_pwd = #{loginPwd,jdbcType=VARCHAR},
+      user_name = #{userName,jdbcType=VARCHAR},
+      user_face = #{userFace,jdbcType=VARCHAR},
+      user_gender = #{userGender,jdbcType=VARCHAR},
+      mobile_phone = #{mobilePhone,jdbcType=VARCHAR},
+      user_mail = #{userMail,jdbcType=VARCHAR},
+      user_remark = #{userRemark,jdbcType=VARCHAR},
+      user_status = #{userStatus,jdbcType=VARCHAR},
+      cert_no = #{certNo,jdbcType=VARCHAR},
+      org_code = #{orgCode,jdbcType=VARCHAR},
+      user_address = #{userAddress,jdbcType=VARCHAR},
+      user_position = #{userPosition,jdbcType=VARCHAR},
+      first_login_time = #{firstLoginTime,jdbcType=VARCHAR},
+      last_login_time = #{lastLoginTime,jdbcType=VARCHAR},
+      last_logout_time = #{lastLogoutTime,jdbcType=VARCHAR},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=VARCHAR},
+      update_user = #{updateUser,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectUserByLoginName" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from sys_user
+    where login_name = #{loginName,jdbcType=VARCHAR}
+  </select>
+  <select id="selectUserListByCondition" resultMap="BaseResultMap" parameterType="com.myboot.cmms.model.system.user.SysUser" >
+    select
+    <include refid="Base_Column_List" />
+    from sys_user
+    where 1=1
+    <if test="id != null and id != ''" >
+      and id = #{id,jdbcType=INTEGER}
+    </if>
+    <if test="loginName != null and loginName != ''" >
+      and login_name = #{loginName,jdbcType=VARCHAR}
+    </if>
+    <if test="userName != null and userName != ''" >
+      and user_name = #{userName,jdbcType=VARCHAR}
+    </if>
+    <if test="mobilePhone != null and mobilePhone !=''" >
+      and mobile_phone = #{mobilePhone,jdbcType=VARCHAR}
+    </if>
+    <if test="userStatus != null and userStatus != ''" >
+      and user_status = #{userStatus,jdbcType=VARCHAR}
+    </if>
+  </select>
+  <update id="updataPwdByLoginName" parameterType="java.lang.String" >
+    update sys_user
+    set login_pwd = #{loginPwd,jdbcType=VARCHAR}
+    where login_name = #{loginName,jdbcType=VARCHAR}
+  </update>
+</mapper>

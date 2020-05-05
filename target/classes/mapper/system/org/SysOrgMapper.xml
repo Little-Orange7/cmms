@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.myboot.cmms.mapper.system.org.SysOrgMapper" >
+  <resultMap id="BaseResultMap" type="com.myboot.cmms.model.system.org.SysOrg" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="org_name" property="orgName" jdbcType="VARCHAR" />
+    <result column="org_code" property="orgCode" jdbcType="VARCHAR" />
+    <result column="parent_id" property="parentId" jdbcType="INTEGER" />
+    <result column="org_status" property="orgStatus" jdbcType="VARCHAR" />
+    <result column="org_principal" property="orgPrincipal" jdbcType="VARCHAR" />
+    <result column="org_phone" property="orgPhone" jdbcType="VARCHAR" />
+    <result column="org_address" property="orgAddress" jdbcType="VARCHAR" />
+    <result column="org_remark" property="orgRemark" jdbcType="VARCHAR" />
+    <result column="create_user" property="createUser" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="VARCHAR" />
+    <result column="update_user" property="updateUser" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="OrgWithChildren" type="com.myboot.cmms.model.system.org.SysOrg" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="org_name" property="orgName" jdbcType="VARCHAR" />
+    <result column="org_code" property="orgCode" jdbcType="VARCHAR" />
+    <result column="parent_id" property="parentId" jdbcType="INTEGER" />
+    <result column="org_status" property="orgStatus" jdbcType="VARCHAR" />
+    <result column="org_principal" property="orgPrincipal" jdbcType="VARCHAR" />
+    <result column="org_phone" property="orgPhone" jdbcType="VARCHAR" />
+    <result column="org_address" property="orgAddress" jdbcType="VARCHAR" />
+    <result column="org_remark" property="orgRemark" jdbcType="VARCHAR" />
+    <result column="create_user" property="createUser" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="VARCHAR" />
+    <result column="update_user" property="updateUser" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="VARCHAR" />
+    <collection property="children" ofType="com.myboot.cmms.model.system.org.SysOrg"
+                select="com.myboot.cmms.mapper.system.org.SysOrgMapper.selectOrgsTreeByParentId" column="id"/>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, org_name, org_code, parent_id, org_status, org_principal, org_phone, org_address,
+    org_remark, create_user, create_time, update_user, update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from sys_org
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sys_org
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.myboot.cmms.model.system.org.SysOrg" >
+    insert into sys_org (id, org_name, org_code,
+      parent_id, org_status, org_principal,
+      org_phone, org_address, org_remark,
+      create_user, create_time, update_user,
+      update_time)
+    values (#{id,jdbcType=INTEGER}, #{orgName,jdbcType=VARCHAR}, #{orgCode,jdbcType=VARCHAR},
+      #{parentId,jdbcType=INTEGER}, #{orgStatus,jdbcType=VARCHAR}, #{orgPrincipal,jdbcType=VARCHAR},
+      #{orgPhone,jdbcType=VARCHAR}, #{orgAddress,jdbcType=VARCHAR}, #{orgRemark,jdbcType=VARCHAR},
+      #{createUser,jdbcType=VARCHAR}, #{createTime,jdbcType=VARCHAR}, #{updateUser,jdbcType=VARCHAR},
+      #{updateTime,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.myboot.cmms.model.system.org.SysOrg" >
+    insert into sys_org
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="orgName != null" >
+        org_name,
+      </if>
+      <if test="orgCode != null" >
+        org_code,
+      </if>
+      <if test="parentId != null" >
+        parent_id,
+      </if>
+      <if test="orgStatus != null" >
+        org_status,
+      </if>
+      <if test="orgPrincipal != null" >
+        org_principal,
+      </if>
+      <if test="orgPhone != null" >
+        org_phone,
+      </if>
+      <if test="orgAddress != null" >
+        org_address,
+      </if>
+      <if test="orgRemark != null" >
+        org_remark,
+      </if>
+      <if test="createUser != null" >
+        create_user,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateUser != null" >
+        update_user,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="orgName != null" >
+        #{orgName,jdbcType=VARCHAR},
+      </if>
+      <if test="orgCode != null" >
+        #{orgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="orgStatus != null" >
+        #{orgStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="orgPrincipal != null" >
+        #{orgPrincipal,jdbcType=VARCHAR},
+      </if>
+      <if test="orgPhone != null" >
+        #{orgPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="orgAddress != null" >
+        #{orgAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="orgRemark != null" >
+        #{orgRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null" >
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUser != null" >
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.myboot.cmms.model.system.org.SysOrg" >
+    update sys_org
+    <set >
+      <if test="orgName != null" >
+        org_name = #{orgName,jdbcType=VARCHAR},
+      </if>
+      <if test="orgCode != null" >
+        org_code = #{orgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        parent_id = #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="orgStatus != null" >
+        org_status = #{orgStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="orgPrincipal != null" >
+        org_principal = #{orgPrincipal,jdbcType=VARCHAR},
+      </if>
+      <if test="orgPhone != null" >
+        org_phone = #{orgPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="orgAddress != null" >
+        org_address = #{orgAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="orgRemark != null" >
+        org_remark = #{orgRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null" >
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUser != null" >
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.myboot.cmms.model.system.org.SysOrg" >
+    update sys_org
+    set org_name = #{orgName,jdbcType=VARCHAR},
+      org_code = #{orgCode,jdbcType=VARCHAR},
+      parent_id = #{parentId,jdbcType=INTEGER},
+      org_status = #{orgStatus,jdbcType=VARCHAR},
+      org_principal = #{orgPrincipal,jdbcType=VARCHAR},
+      org_phone = #{orgPhone,jdbcType=VARCHAR},
+      org_address = #{orgAddress,jdbcType=VARCHAR},
+      org_remark = #{orgRemark,jdbcType=VARCHAR},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=VARCHAR},
+      update_user = #{updateUser,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectOrgsTreeByParentId" resultMap="OrgWithChildren" parameterType="java.lang.Integer">
+    select * from sys_org where parent_id = #{pid,jdbcType=INTEGER}
+  </select>
+  <select id="selectUserByOrgId" resultType="com.myboot.cmms.model.system.user.SysUser" parameterType="java.lang.Integer">
+    SELECT su.*
+    FROM sys_user su,
+    sys_org so
+    where so.org_code=su.org_code
+    and so.id=#{id,jdbcType=INTEGER}
+  </select>
+</mapper>
