@@ -125,24 +125,6 @@ CREATE TABLE `sys_org` (
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='系统组织机构表';
 
 
-
-/*Table structure for table `sys_org_user` 用不着了 */
-
-DROP TABLE IF EXISTS `sys_org_user`;
-
-CREATE TABLE `sys_org_user` (
-  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID',
-  `org_id` int(11) DEFAULT NULL COMMENT '部门ID',
-  `user_id` int(11) DEFAULT NULL COMMENT '用户ID',
-  `create_user` varchar(40) DEFAULT NULL COMMENT '创建人',
-  `create_time` varchar(22) DEFAULT NULL COMMENT '创建时间',
-  `update_user` varchar(40) DEFAULT NULL COMMENT '更新人',
-  `update_time` varchar(22) DEFAULT NULL COMMENT '更新时间',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='系统机构用户表';
-
-
-
 /*Table structure for table `sys_select` */
 
 DROP TABLE IF EXISTS `sys_select`;

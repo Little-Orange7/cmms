@@ -1,6 +1,5 @@
 package com.myboot.cmms.mapper.system.orgUser;
 
-import com.myboot.cmms.model.system.orgUser.SysOrgUser;
 import com.myboot.cmms.model.system.user.SysUser;
 import org.apache.ibatis.annotations.Param;
 
