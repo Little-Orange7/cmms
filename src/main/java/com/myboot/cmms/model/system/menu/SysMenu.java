@@ -136,4 +136,24 @@ public class SysMenu implements Serializable {
     public void setUpdateTime(String updateTime) {
         this.updateTime = updateTime == null ? null : updateTime.trim();
     }
+
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer("SysMenu{");
+        sb.append("id=").append(id);
+        sb.append(", url='").append(url).append('\'');
+        sb.append(", path='").append(path).append('\'');
+        sb.append(", name='").append(name).append('\'');
+        sb.append(", component='").append(component).append('\'');
+        sb.append(", meta=").append(meta);
+        sb.append(", parentId=").append(parentId);
+        sb.append(", folder=").append(folder);
+        sb.append(", children=").append(children);
+        sb.append(", createUser='").append(createUser).append('\'');
+        sb.append(", createTime='").append(createTime).append('\'');
+        sb.append(", updateUser='").append(updateUser).append('\'');
+        sb.append(", updateTime='").append(updateTime).append('\'');
+        sb.append('}');
+        return sb.toString();
+    }
 }

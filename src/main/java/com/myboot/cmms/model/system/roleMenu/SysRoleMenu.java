@@ -74,4 +74,18 @@ public class SysRoleMenu implements Serializable {
     public void setUpdateTime(String updateTime) {
         this.updateTime = updateTime == null ? null : updateTime.trim();
     }
+
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer("SysRoleMenu{");
+        sb.append("id=").append(id);
+        sb.append(", rid=").append(rid);
+        sb.append(", mid=").append(mid);
+        sb.append(", createUser='").append(createUser).append('\'');
+        sb.append(", createTime='").append(createTime).append('\'');
+        sb.append(", updateUser='").append(updateUser).append('\'');
+        sb.append(", updateTime='").append(updateTime).append('\'');
+        sb.append('}');
+        return sb.toString();
+    }
 }

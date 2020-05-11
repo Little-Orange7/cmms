@@ -48,4 +48,15 @@ public class Meta implements Serializable {
     public static long getSerialVersionUID() {
         return serialVersionUID;
     }
+
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer("Meta{");
+        sb.append("iconCls='").append(iconCls).append('\'');
+        sb.append(", title='").append(title).append('\'');
+        sb.append(", keepAlive=").append(keepAlive);
+        sb.append(", requireAuth=").append(requireAuth);
+        sb.append('}');
+        return sb.toString();
+    }
 }

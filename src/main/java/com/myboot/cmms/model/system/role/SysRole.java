@@ -77,14 +77,15 @@ public class SysRole implements Serializable {
 
     @Override
     public String toString() {
-        return "SysRole{" +
-                "id=" + id +
-                ", roleCode='" + roleCode + '\'' +
-                ", roleName='" + roleName + '\'' +
-                ", createUser='" + createUser + '\'' +
-                ", createTime='" + createTime + '\'' +
-                ", updateUser='" + updateUser + '\'' +
-                ", updateTime='" + updateTime + '\'' +
-                '}';
+        final StringBuffer sb = new StringBuffer("SysRole{");
+        sb.append("id=").append(id);
+        sb.append(", roleCode='").append(roleCode).append('\'');
+        sb.append(", roleName='").append(roleName).append('\'');
+        sb.append(", createUser='").append(createUser).append('\'');
+        sb.append(", createTime='").append(createTime).append('\'');
+        sb.append(", updateUser='").append(updateUser).append('\'');
+        sb.append(", updateTime='").append(updateTime).append('\'');
+        sb.append('}');
+        return sb.toString();
     }
 }

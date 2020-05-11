@@ -214,4 +214,32 @@ public class SysUser implements Serializable {
     public void setUpdateTime(String updateTime) {
         this.updateTime = updateTime == null ? null : updateTime.trim();
     }
+
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer("SysUser{");
+        sb.append("id=").append(id);
+        sb.append(", loginName='").append(loginName).append('\'');
+        sb.append(", loginPwd='").append(loginPwd).append('\'');
+        sb.append(", userName='").append(userName).append('\'');
+        sb.append(", userFace='").append(userFace).append('\'');
+        sb.append(", userGender='").append(userGender).append('\'');
+        sb.append(", mobilePhone='").append(mobilePhone).append('\'');
+        sb.append(", userMail='").append(userMail).append('\'');
+        sb.append(", userRemark='").append(userRemark).append('\'');
+        sb.append(", userStatus='").append(userStatus).append('\'');
+        sb.append(", certNo='").append(certNo).append('\'');
+        sb.append(", orgCode='").append(orgCode).append('\'');
+        sb.append(", userAddress='").append(userAddress).append('\'');
+        sb.append(", userPosition='").append(userPosition).append('\'');
+        sb.append(", firstLoginTime='").append(firstLoginTime).append('\'');
+        sb.append(", lastLoginTime='").append(lastLoginTime).append('\'');
+        sb.append(", lastLogoutTime='").append(lastLogoutTime).append('\'');
+        sb.append(", createUser='").append(createUser).append('\'');
+        sb.append(", createTime='").append(createTime).append('\'');
+        sb.append(", updateUser='").append(updateUser).append('\'');
+        sb.append(", updateTime='").append(updateTime).append('\'');
+        sb.append('}');
+        return sb.toString();
+    }
 }

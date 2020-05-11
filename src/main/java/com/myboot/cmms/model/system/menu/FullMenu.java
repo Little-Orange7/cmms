@@ -156,4 +156,26 @@ public class FullMenu implements Serializable {
     public void setUpdateTime(String updateTime) {
         this.updateTime = updateTime;
     }
+
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer("FullMenu{");
+        sb.append("id=").append(id);
+        sb.append(", url='").append(url).append('\'');
+        sb.append(", path='").append(path).append('\'');
+        sb.append(", name='").append(name).append('\'');
+        sb.append(", component='").append(component).append('\'');
+        sb.append(", iconCls='").append(iconCls).append('\'');
+        sb.append(", title='").append(title).append('\'');
+        sb.append(", keepAlive=").append(keepAlive);
+        sb.append(", requireAuth=").append(requireAuth);
+        sb.append(", parentId=").append(parentId);
+        sb.append(", folder=").append(folder);
+        sb.append(", createUser='").append(createUser).append('\'');
+        sb.append(", createTime='").append(createTime).append('\'');
+        sb.append(", updateUser='").append(updateUser).append('\'');
+        sb.append(", updateTime='").append(updateTime).append('\'');
+        sb.append('}');
+        return sb.toString();
+    }
 }
