@@ -9,12 +9,14 @@ public interface OrgService {
 
     /**
      * 获取所有机构的tree
+     *
      * @return
      */
     List<SysOrg> getOrgTreeByParentId(Integer pid);
 
     /**
      * 新增机构
+     *
      * @param org
      * @return
      */
@@ -22,6 +24,7 @@ public interface OrgService {
 
     /**
      * 修改机构信息---根据机构id修改机构信息
+     *
      * @param org
      * @return
      */
@@ -29,6 +32,7 @@ public interface OrgService {
 
     /**
      * 删除机构---根据id删除机构信息
+     *
      * @param id
      * @return
      */
@@ -36,6 +40,7 @@ public interface OrgService {
 
     /**
      * 根据机构id查询其下的用户
+     *
      * @param id
      * @return
      */

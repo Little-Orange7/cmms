@@ -25,5 +25,5 @@ public interface SysUserRoleMapper {
     int deleteRidsByUid(Integer uid);
 
     //修改用户拥有的角色id
-    int updateRidsByUid(@Param("uid")Integer uid, @Param("rids")Integer[] rids);
+    int updateRidsByUid(@Param("uid") Integer uid, @Param("rids") Integer[] rids);
 }

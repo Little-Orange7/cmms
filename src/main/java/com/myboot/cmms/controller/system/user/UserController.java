@@ -23,25 +23,27 @@ public class UserController {
 
     /**
      * 用户列表查询--可根据查询条件
+     *
      * @param sysUser
      * @return
      */
     @PostMapping("/searchUserListByCondition")
-    public RespResult searchUserListByCondition(@RequestBody SysUser sysUser){
-        logger.info("searchUserListByCondition=====>sysUser:{}",sysUser);
+    public RespResult searchUserListByCondition(@RequestBody SysUser sysUser) {
+        logger.info("searchUserListByCondition=====>sysUser:{}", sysUser);
         List<SysUser> list = userService.searchUserListByCondition(sysUser);
         return RespResult.success(list);
     }
 
     /**
      * 添加用户
+     *
      * @return
      */
     @PostMapping("/addUser")
-    public RespResult addUser(@RequestBody SysUser sysUser){
-        logger.info("addUser=====>sysUser:{}",sysUser);
-        int n=userService.addUser(sysUser);
-        if(n==1){
+    public RespResult addUser(@RequestBody SysUser sysUser) {
+        logger.info("addUser=====>sysUser:{}", sysUser);
+        int n = userService.addUser(sysUser);
+        if (n == 1) {
             return RespResult.success("添加成功!");
         }
         return RespResult.fail("添加失败!");
@@ -49,15 +51,16 @@ public class UserController {
 
     /**
      * 删除用户---根据用户id
+     *
      * @param map
      * @return
      */
     @PostMapping("/deleteUserByUid")
-    public RespResult deleteUserByUid(@RequestBody Map<String,Object> map){
-        logger.info("addUser=====>map:{}",map);
-        Integer uid=(Integer)map.get("id");
-        int n=userService.deleteUserByUid(uid);
-        if(n==1){
+    public RespResult deleteUserByUid(@RequestBody Map<String, Object> map) {
+        logger.info("addUser=====>map:{}", map);
+        Integer uid = (Integer) map.get("id");
+        int n = userService.deleteUserByUid(uid);
+        if (n == 1) {
             return RespResult.success("删除成功!");
         }
         return RespResult.fail("删除失败!");
@@ -65,13 +68,14 @@ public class UserController {
 
     /**
      * 修改用户信息---根据用户id
+     *
      * @param sysUser
      * @return
      */
     @PostMapping("/editUserInfoByUid")
-    public RespResult editUserInfoByUid(@RequestBody SysUser sysUser){
-        int n=userService.editUserInfoByUid(sysUser);
-        if(n==1){
+    public RespResult editUserInfoByUid(@RequestBody SysUser sysUser) {
+        int n = userService.editUserInfoByUid(sysUser);
+        if (n == 1) {
             return RespResult.success("修改成功!");
         }
         return RespResult.fail("修改失败!");

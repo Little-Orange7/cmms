@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.myboot.cmms.mapper.system.select.SysSelectMapper" >
-  <resultMap id="BaseResultMap" type="com.myboot.cmms.model.system.select.SysSelect" >
-    <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="select_code" property="selectCode" jdbcType="VARCHAR" />
-    <result column="select_name" property="selectName" jdbcType="VARCHAR" />
-    <result column="select_remark" property="selectRemark" jdbcType="VARCHAR" />
-    <result column="create_user" property="createUser" jdbcType="VARCHAR" />
-    <result column="create_time" property="createTime" jdbcType="VARCHAR" />
-    <result column="update_user" property="updateUser" jdbcType="VARCHAR" />
-    <result column="update_time" property="updateTime" jdbcType="VARCHAR" />
-  </resultMap>
-  <sql id="Base_Column_List" >
+<mapper namespace="com.myboot.cmms.mapper.system.select.SysSelectMapper">
+    <resultMap id="BaseResultMap" type="com.myboot.cmms.model.system.select.SysSelect">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="select_code" property="selectCode" jdbcType="VARCHAR"/>
+        <result column="select_name" property="selectName" jdbcType="VARCHAR"/>
+        <result column="select_remark" property="selectRemark" jdbcType="VARCHAR"/>
+        <result column="create_user" property="createUser" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="VARCHAR"/>
+        <result column="update_user" property="updateUser" jdbcType="VARCHAR"/>
+        <result column="update_time" property="updateTime" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
     id, select_code, select_name, select_remark, create_user, create_time, update_user,
     update_time
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select
-    <include refid="Base_Column_List" />
-    from sys_select
-    where id = #{id,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_select
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from sys_select
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.myboot.cmms.model.system.select.SysSelect" >
+    <insert id="insert" parameterType="com.myboot.cmms.model.system.select.SysSelect">
     insert into sys_select (id, select_code, select_name,
       select_remark, create_user, create_time,
       update_user, update_time)
@@ -33,89 +33,89 @@
       #{selectRemark,jdbcType=VARCHAR}, #{createUser,jdbcType=VARCHAR}, #{createTime,jdbcType=VARCHAR},
       #{updateUser,jdbcType=VARCHAR}, #{updateTime,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.myboot.cmms.model.system.select.SysSelect" >
-    insert into sys_select
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        id,
-      </if>
-      <if test="selectCode != null" >
-        select_code,
-      </if>
-      <if test="selectName != null" >
-        select_name,
-      </if>
-      <if test="selectRemark != null" >
-        select_remark,
-      </if>
-      <if test="createUser != null" >
-        create_user,
-      </if>
-      <if test="createTime != null" >
-        create_time,
-      </if>
-      <if test="updateUser != null" >
-        update_user,
-      </if>
-      <if test="updateTime != null" >
-        update_time,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="selectCode != null" >
-        #{selectCode,jdbcType=VARCHAR},
-      </if>
-      <if test="selectName != null" >
-        #{selectName,jdbcType=VARCHAR},
-      </if>
-      <if test="selectRemark != null" >
-        #{selectRemark,jdbcType=VARCHAR},
-      </if>
-      <if test="createUser != null" >
-        #{createUser,jdbcType=VARCHAR},
-      </if>
-      <if test="createTime != null" >
-        #{createTime,jdbcType=VARCHAR},
-      </if>
-      <if test="updateUser != null" >
-        #{updateUser,jdbcType=VARCHAR},
-      </if>
-      <if test="updateTime != null" >
-        #{updateTime,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.myboot.cmms.model.system.select.SysSelect" >
-    update sys_select
-    <set >
-      <if test="selectCode != null" >
-        select_code = #{selectCode,jdbcType=VARCHAR},
-      </if>
-      <if test="selectName != null" >
-        select_name = #{selectName,jdbcType=VARCHAR},
-      </if>
-      <if test="selectRemark != null" >
-        select_remark = #{selectRemark,jdbcType=VARCHAR},
-      </if>
-      <if test="createUser != null" >
-        create_user = #{createUser,jdbcType=VARCHAR},
-      </if>
-      <if test="createTime != null" >
-        create_time = #{createTime,jdbcType=VARCHAR},
-      </if>
-      <if test="updateUser != null" >
-        update_user = #{updateUser,jdbcType=VARCHAR},
-      </if>
-      <if test="updateTime != null" >
-        update_time = #{updateTime,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.myboot.cmms.model.system.select.SysSelect" >
+    <insert id="insertSelective" parameterType="com.myboot.cmms.model.system.select.SysSelect">
+        insert into sys_select
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="selectCode != null">
+                select_code,
+            </if>
+            <if test="selectName != null">
+                select_name,
+            </if>
+            <if test="selectRemark != null">
+                select_remark,
+            </if>
+            <if test="createUser != null">
+                create_user,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateUser != null">
+                update_user,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="selectCode != null">
+                #{selectCode,jdbcType=VARCHAR},
+            </if>
+            <if test="selectName != null">
+                #{selectName,jdbcType=VARCHAR},
+            </if>
+            <if test="selectRemark != null">
+                #{selectRemark,jdbcType=VARCHAR},
+            </if>
+            <if test="createUser != null">
+                #{createUser,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=VARCHAR},
+            </if>
+            <if test="updateUser != null">
+                #{updateUser,jdbcType=VARCHAR},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.myboot.cmms.model.system.select.SysSelect">
+        update sys_select
+        <set>
+            <if test="selectCode != null">
+                select_code = #{selectCode,jdbcType=VARCHAR},
+            </if>
+            <if test="selectName != null">
+                select_name = #{selectName,jdbcType=VARCHAR},
+            </if>
+            <if test="selectRemark != null">
+                select_remark = #{selectRemark,jdbcType=VARCHAR},
+            </if>
+            <if test="createUser != null">
+                create_user = #{createUser,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=VARCHAR},
+            </if>
+            <if test="updateUser != null">
+                update_user = #{updateUser,jdbcType=VARCHAR},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.myboot.cmms.model.system.select.SysSelect">
     update sys_select
     set select_code = #{selectCode,jdbcType=VARCHAR},
       select_name = #{selectName,jdbcType=VARCHAR},
@@ -126,25 +126,26 @@
       update_time = #{updateTime,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <select id="selectListByCondition" resultMap="BaseResultMap" parameterType="com.myboot.cmms.model.system.select.SysSelect">
-    select
-    <include refid="Base_Column_List" />
-    from sys_select
-    where 1=1
-    <if test="selectCode != null" >
-      and select_code like '%${selectCode}%'
-    </if>
-    <if test="selectName != null" >
-      and select_name like '%${selectName}%'
-    </if>
-    <if test="selectRemark != null" >
-      and select_remark like '%${selectRemark}%'
-    </if>
-  </select>
-  <select id="selectBySelectCode" resultMap="BaseResultMap" parameterType="java.lang.String" >
-    select
-    <include refid="Base_Column_List" />
-    from sys_select
-    where select_code = #{selectCode,jdbcType=VARCHAR}
-  </select>
+    <select id="selectListByCondition" resultMap="BaseResultMap"
+            parameterType="com.myboot.cmms.model.system.select.SysSelect">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_select
+        where 1=1
+        <if test="selectCode != null">
+            and select_code like '%${selectCode}%'
+        </if>
+        <if test="selectName != null">
+            and select_name like '%${selectName}%'
+        </if>
+        <if test="selectRemark != null">
+            and select_remark like '%${selectRemark}%'
+        </if>
+    </select>
+    <select id="selectBySelectCode" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_select
+        where select_code = #{selectCode,jdbcType=VARCHAR}
+    </select>
 </mapper>

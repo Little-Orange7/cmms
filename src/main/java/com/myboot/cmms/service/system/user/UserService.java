@@ -8,6 +8,7 @@ public interface UserService {
 
     /**
      * 根据查询条件查询用户列表
+     *
      * @param user
      * @return
      */
@@ -15,6 +16,7 @@ public interface UserService {
 
     /**
      * 添加用户
+     *
      * @param user
      * @return
      */
@@ -22,6 +24,7 @@ public interface UserService {
 
     /**
      * 根据用户id删除该用户
+     *
      * @param uid
      * @return
      */
@@ -29,6 +32,7 @@ public interface UserService {
 
     /**
      * 修改用户信息---根据用户id
+     *
      * @param user
      * @return
      */

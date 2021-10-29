@@ -22,12 +22,12 @@ public class UserRoleServiceImpl implements UserRoleService {
 
     @Override
     @Transactional
-    public boolean modifyRidsByUid(Integer uid,Integer[] rids) {
+    public boolean modifyRidsByUid(Integer uid, Integer[] rids) {
         sysUserRoleMapper.deleteRidsByUid(uid);
         if (rids == null || rids.length == 0) {
             return true;
         }
-        int n=sysUserRoleMapper.updateRidsByUid(uid,rids);
-        return n==rids.length;
+        int n = sysUserRoleMapper.updateRidsByUid(uid, rids);
+        return n == rids.length;
     }
 }

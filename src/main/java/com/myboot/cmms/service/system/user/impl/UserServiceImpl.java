@@ -21,7 +21,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public int addUser(SysUser user) {
-        if("".equals(user.getLoginPwd())||user.getLoginPwd()==null){
+        if ("".equals(user.getLoginPwd()) || user.getLoginPwd() == null) {
             user.setLoginPwd("123456");//如果没有输入密码，则使用默认密码
         }
         user.setLoginPwd(MD5Util.encodeMd5(user.getLoginPwd()));
@@ -35,7 +35,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public int editUserInfoByUid(SysUser user) {
-        if(!"".equals(user.getLoginPwd())&&user.getLoginPwd()!=null){
+        if (!"".equals(user.getLoginPwd()) && user.getLoginPwd() != null) {
             user.setLoginPwd(MD5Util.encodeMd5(user.getLoginPwd()));
         }
         return sysUserMapper.updateByPrimaryKeySelective(user);

@@ -6,8 +6,9 @@
     <!--定义日志文件的存储地址 勿在 LogBack 的配置中使用相对路径-->
     <property name="LOG_HOME" value="D:/log/cmms"/>
     <!-- 日志输出格式【控制台】 [%p][%c][%M][%L] -->
-<!--    <property name="logPatternConsoleLog" value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50}   :%msg%n"/>-->
-    <property name="logPatternConsoleLog" value="%d{yyyy-MM-dd HH:mm:ss.SSS} %highlight(%p) | [%thread] %cyan(%c) | %M[%magenta(%L)]  :%msg%n"/>
+    <!--    <property name="logPatternConsoleLog" value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50}   :%msg%n"/>-->
+    <property name="logPatternConsoleLog"
+              value="%d{yyyy-MM-dd HH:mm:ss.SSS} %highlight(%p) | [%thread] %cyan(%c) | %M[%magenta(%L)]  :%msg%n"/>
     <!-- 日志输出格式【日志文件】 -->
     <property name="logPattern" value="%date{yyyy-MM-dd HH:mm:ss} | %p | %c | %M:%L | %m%n"/>
     <!-- 日志输出编码格式 -->
@@ -16,12 +17,12 @@
     <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
             <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符-->
-<!--            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50}   :%msg%n</pattern>-->
+            <!--            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50}   :%msg%n</pattern>-->
             <pattern>${logPatternConsoleLog}</pattern>
         </encoder>
     </appender>
     <!-- 按照每天生成日志文件 -->
-    <appender name="FILE"  class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <!--如果只是想要 Info 级别的日志，只是过滤 info 还是会输出 Error 日志，因为 Error 的级别高，
  所以我们使用下面的策略，可以避免输出 Error 的日志-->
         <!--<filter class="ch.qos.logback.classic.filter.LevelFilter">
@@ -36,11 +37,12 @@
         如果同时有<File>和<FileNamePattern>，那么当天日志是<File>，明天会自动把今天
         的日志改名为今天的日期。即，<File> 的日志都是当天的。
         -->
-<!--        <File>${LOG_HOME}/info.${logback.appname}.log</File>-->
+        <!--        <File>${LOG_HOME}/info.${logback.appname}.log</File>-->
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!--日志文件输出的文件名-->
-<!--            <FileNamePattern>${LOG_HOME}/TestWeb.log.%d{yyyy-MM-dd-HH-mm}.log</FileNamePattern>&lt;!&ndash;按照分钟来切分当天日志&ndash;&gt;-->
-            <FileNamePattern>${LOG_HOME}/info.${logback.appname}.%d{yyyy-MM-dd}.log</FileNamePattern><!--文件名以当天为name,则当天日志都存放到一个当天定义的文件中-->
+            <!--            <FileNamePattern>${LOG_HOME}/TestWeb.log.%d{yyyy-MM-dd-HH-mm}.log</FileNamePattern>&lt;!&ndash;按照分钟来切分当天日志&ndash;&gt;-->
+            <FileNamePattern>${LOG_HOME}/info.${logback.appname}.%d{yyyy-MM-dd}.log
+            </FileNamePattern><!--文件名以当天为name,则当天日志都存放到一个当天定义的文件中-->
             <!--日志文件保留天数-->
             <MaxHistory>30</MaxHistory>
             <!--用来指定日志文件的上限大小，那么到了这个值，就会删除旧的日志-->
@@ -123,10 +125,10 @@
 
     <!-- 日志输出级别 -->
     <root level="INFO">
-        <appender-ref ref="console" />
-        <appender-ref ref="FILE" />
-<!--        <appender-ref ref="info1" />-->
-<!--        <appender-ref ref="debug1" />-->
+        <appender-ref ref="console"/>
+        <appender-ref ref="FILE"/>
+        <!--        <appender-ref ref="info1" />-->
+        <!--        <appender-ref ref="debug1" />-->
     </root>
     <!--日志异步到数据库 -->
     <!--<appender name="DB" class="ch.qos.logback.classic.db.DBAppender">-->

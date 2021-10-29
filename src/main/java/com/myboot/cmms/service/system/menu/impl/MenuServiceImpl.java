@@ -21,28 +21,28 @@ public class MenuServiceImpl implements MenuService {
 
     @Override
     public int addMenu(FullMenu menu) {
-        if(menu.getFolder()){//是文件夹，不用解析url
-            if(menu.getParentId()==1){//一级菜单,必须固定是这个路由
+        if (menu.getFolder()) {//是文件夹，不用解析url
+            if (menu.getParentId() == 1) {//一级菜单,必须固定是这个路由
                 menu.setComponent("/Layout.vue");
                 menu.setName("Layout");
                 menu.setPath("/");
-            }else{
+            } else {
                 menu.setComponent("/system/settings/common/Folder.vue");//文件夹
                 menu.setName("Folder");
                 menu.setPath("/system/settings/common/Folder");
             }
-        }else{//是菜单,需要解析url，注意，此处默认只能解析views下的页面，所以，所有的业务页面都要写在views下
+        } else {//是菜单,需要解析url，注意，此处默认只能解析views下的页面，所以，所有的业务页面都要写在views下
             //url:   '/views/emp/basic/EmpBasic.vue'
             //component:  /emp/basic/EmpBasic.vue
             //path:   /emp/basic/EmpBasic
-            String url=menu.getUrl();
-            int startIndex=url.indexOf('/',1);
-            String path=url.substring(startIndex,url.indexOf(".vue"));
-            String component=url.substring(startIndex);
+            String url = menu.getUrl();
+            int startIndex = url.indexOf('/', 1);
+            String path = url.substring(startIndex, url.indexOf(".vue"));
+            String component = url.substring(startIndex);
             menu.setComponent(component);//组件
             menu.setPath(path);//组件path
-            int lastIndex=url.lastIndexOf('/');
-            String name=url.substring(lastIndex+1,url.indexOf(".vue"));//组件名称
+            int lastIndex = url.lastIndexOf('/');
+            String name = url.substring(lastIndex + 1, url.indexOf(".vue"));//组件名称
             menu.setName(name);
         }
         return sysMenuMapper.insertSelective(menu);

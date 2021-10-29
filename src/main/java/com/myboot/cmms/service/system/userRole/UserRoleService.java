@@ -7,6 +7,7 @@ public interface UserRoleService {
 
     /**
      * 根据用户id查询所有的角色id
+     *
      * @param uid
      * @return
      */
@@ -14,8 +15,9 @@ public interface UserRoleService {
 
     /**
      * 修改用户拥有的角色id
+     *
      * @param
      * @return
      */
-    boolean modifyRidsByUid(Integer uid,Integer[] rids);
+    boolean modifyRidsByUid(Integer uid, Integer[] rids);
 }

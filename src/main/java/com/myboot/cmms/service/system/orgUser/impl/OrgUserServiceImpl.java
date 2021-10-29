@@ -15,27 +15,27 @@ public class OrgUserServiceImpl implements OrgUserService {
     private SysOrgUserMapper sysOrgUserMapper;
 
     @Override
-    public List<SysUser> searchUserListByOids(Map<String,Object> map) {
-        String oidStr=(String)map.get("oids");
-        Integer[] oids=null;
+    public List<SysUser> searchUserListByOids(Map<String, Object> map) {
+        String oidStr = (String) map.get("oids");
+        Integer[] oids = null;
         //1.如果传的是非空字符串，则分两种情况：1.1 只有一个值；1.2 多于一个值；
-        if(!"".equals(oidStr)){
-            String[] oidsStr=oidStr.split(",");//注：如果oidStr是空字符串“”，则分割后的长度是1，分割的字符还是空字符串“”
+        if (!"".equals(oidStr)) {
+            String[] oidsStr = oidStr.split(",");//注：如果oidStr是空字符串“”，则分割后的长度是1，分割的字符还是空字符串“”
             //只有一个值的情况
-            if(oidsStr.length==1&&!"".equals(oidsStr[0])){
-                Integer oid=Integer.parseInt(oidsStr[0]);
+            if (oidsStr.length == 1 && !"".equals(oidsStr[0])) {
+                Integer oid = Integer.parseInt(oidsStr[0]);
                 return sysOrgUserMapper.selectUserListByOid(oid);
             }
             //多于一个值的情况
-            oids=new Integer[oidsStr.length];
-            if(oids.length>1){
-                for(int i=0;i<oids.length; i++){
-                    oids[i]=Integer.parseInt(oidsStr[i]);
+            oids = new Integer[oidsStr.length];
+            if (oids.length > 1) {
+                for (int i = 0; i < oids.length; i++) {
+                    oids[i] = Integer.parseInt(oidsStr[i]);
                 }
             }
-        }else{
+        } else {
             //2 如果传的是一个空字符串，则查询全机构用户
-            oids=new Integer[0];
+            oids = new Integer[0];
         }
         return sysOrgUserMapper.selectUserListByOids(oids);
     }

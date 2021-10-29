@@ -19,13 +19,13 @@ public class RoleMenuServiceImpl implements RoleMenuService {
 
     @Override
     @Transactional
-    public boolean modifyMidsByRid(Integer rid,Integer[] mids) {
+    public boolean modifyMidsByRid(Integer rid, Integer[] mids) {
         sysRoleMenuMapper.deleteMidsByRid(rid);
         if (mids == null || mids.length == 0) {
             return true;
         }
-        Integer n=sysRoleMenuMapper.addMidsByRid(rid,mids);
-        return n==mids.length;
+        Integer n = sysRoleMenuMapper.addMidsByRid(rid, mids);
+        return n == mids.length;
     }
 
     @Override

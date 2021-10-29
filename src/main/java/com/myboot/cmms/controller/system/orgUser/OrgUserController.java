@@ -23,12 +23,13 @@ public class OrgUserController {
 
     /**
      * 查询所选机构的用户列表
+     *
      * @param map
      * @return
      */
     @PostMapping("/searchUserListByOids")
-    public RespResult searchUserListByOids(@RequestBody Map<String,Object> map){
-        logger.info("searchUserListByOids====>map:{}",map);
+    public RespResult searchUserListByOids(@RequestBody Map<String, Object> map) {
+        logger.info("searchUserListByOids====>map:{}", map);
         List<SysUser> list = orgUserService.searchUserListByOids(map);
         return RespResult.success(list);
     }

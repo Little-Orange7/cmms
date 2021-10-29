@@ -7,6 +7,7 @@ import java.util.List;
 public interface OptionService {
     /**
      * 根据selectCode查询Options
+     *
      * @param code
      * @return
      */
@@ -14,6 +15,7 @@ public interface OptionService {
 
     /**
      * 根据selectid查询option
+     *
      * @param id
      * @return
      */
@@ -21,6 +23,7 @@ public interface OptionService {
 
     /**
      * 增加Option
+     *
      * @param option
      * @return
      */
@@ -28,6 +31,7 @@ public interface OptionService {
 
     /**
      * 修改option
+     *
      * @param option
      * @return
      */
@@ -36,6 +40,7 @@ public interface OptionService {
     /**
      * 删除option
      * 根据optionId删除Option
+     *
      * @param id
      * @return
      */

@@ -7,6 +7,7 @@ import java.util.List;
 public interface SelectService {
     /**
      * 根据查询条件查询select列表（支持模糊查询）
+     *
      * @param select
      * @return
      */
@@ -14,6 +15,7 @@ public interface SelectService {
 
     /**
      * 根据selectCode查询select
+     *
      * @param code
      * @return
      */
@@ -21,6 +23,7 @@ public interface SelectService {
 
     /**
      * 新增select
+     *
      * @param select
      * @return
      */
@@ -28,6 +31,7 @@ public interface SelectService {
 
     /**
      * 修改select
+     *
      * @param select
      * @return
      */
@@ -36,6 +40,7 @@ public interface SelectService {
     /**
      * 删除select
      * 根据id删除select
+     *
      * @param id
      * @return
      */
