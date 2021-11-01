@@ -128,15 +128,11 @@
             <if test="createUser != null">
                 create_user,
             </if>
-            <if test="createTime != null">
-                create_time,
-            </if>
             <if test="updateUser != null">
                 update_user,
             </if>
-            <if test="updateTime != null">
-                update_time,
-            </if>
+            create_time,
+            update_time
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="id != null">
@@ -175,15 +171,11 @@
             <if test="createUser != null">
                 #{createUser,jdbcType=VARCHAR},
             </if>
-            <if test="createTime != null">
-                #{createTime,jdbcType=VARCHAR},
-            </if>
             <if test="updateUser != null">
                 #{updateUser,jdbcType=VARCHAR},
             </if>
-            <if test="updateTime != null">
-                #{updateTime,jdbcType=VARCHAR},
-            </if>
+            now(),
+            now()
         </trim>
     </insert>
     <update id="updateByPrimaryKeySelective" parameterType="com.myboot.cmms.model.system.menu.SysMenu">
@@ -291,18 +283,10 @@
             <if test="folder != null">
                 folder = #{folder,jdbcType=BIT},
             </if>
-            <if test="createUser != null">
-                create_user = #{createUser,jdbcType=VARCHAR},
-            </if>
-            <if test="createTime != null">
-                create_time = #{createTime,jdbcType=VARCHAR},
-            </if>
             <if test="updateUser != null">
                 update_user = #{updateUser,jdbcType=VARCHAR},
             </if>
-            <if test="updateTime != null">
-                update_time = #{updateTime,jdbcType=VARCHAR},
-            </if>
+            update_time=now()
         </set>
         where id = #{id,jdbcType=INTEGER}
     </update>

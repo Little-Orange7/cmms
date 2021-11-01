@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Map;
 
@@ -39,8 +40,8 @@ public class MenuController {
      * @return
      */
     @PostMapping("/addMenu")
-    public RespResult addMenu(@RequestBody FullMenu menu) {
-        int n = menuService.addMenu(menu);
+    public RespResult addMenu(@RequestBody FullMenu menu, HttpServletRequest request) {
+        int n = menuService.addMenu(menu,request);
         if (n == 1) {
             return RespResult.success("新增成功！");
         } else {
@@ -94,13 +95,13 @@ public class MenuController {
      * @return
      */
     @PostMapping("/editMenuInfoByMid")
-    public RespResult editMenuInfoByMid(@RequestBody FullMenu menu) {
+    public RespResult editMenuInfoByMid(@RequestBody FullMenu menu, HttpServletRequest request) {
         //先根据id查询是否存在menu信息，如果不存在，则修改失败
         FullMenu fullMenu = menuService.selectMenuInfoByMid(menu.getId());
         if (fullMenu == null) {
             RespResult.fail("该菜单已经被删除，修改失败!");
         }
-        int n = menuService.editMenuInfoByMid(menu);
+        int n = menuService.editMenuInfoByMid(menu,request);
         if (n == 1) {
             return RespResult.success("修改成功!");
         } else {

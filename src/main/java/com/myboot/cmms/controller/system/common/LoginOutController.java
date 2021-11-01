@@ -49,7 +49,7 @@ public class LoginOutController {
         if (MD5Util.verifyMd5(loginPwd, user.getLoginPwd())) {
             HttpSession session = request.getSession();
             session.setMaxInactiveInterval(30 * 60);//设置过期时间，以秒为单位
-            session.setAttribute("userInfo", loginName + " - " + user.getLoginPwd());
+            session.setAttribute("userInfo", loginName + "," + user.getLoginPwd());
             return RespResult.success("登录成功!", user);
         } else {
             return RespResult.fail("密码错误!");
